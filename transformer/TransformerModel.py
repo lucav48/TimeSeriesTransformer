@@ -31,7 +31,6 @@ def create_model(seq_len=128, seq_dim=5, n_heads=12, d_k=32, d_v=32, ff_dim=1024
     out = Dense(1, activation='linear')(x)
 
     model = Model(inputs=in_seq, outputs=out)
-    model.compile(loss="mse", optimizer="adamax", metrics=['mae'])
     return model
 
 def load_custom_model(path):
