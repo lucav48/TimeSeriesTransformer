@@ -7,7 +7,7 @@ from transformer.component.Time2Vector import Time2Vector
 from transformer.component.TransformerEncoder import TransformerEncoder
 
 
-def create_model(seq_len=128, n_heads=12, d_k=32, d_v=32, ff_dim=1024,
+def create_model(seq_len=128, seq_dim=5, n_heads=12, d_k=32, d_v=32, ff_dim=1024,
                  n_attention=3):
     '''Initialize time and transformer layers'''
     time_embedding = Time2Vector(seq_len)
@@ -16,7 +16,7 @@ def create_model(seq_len=128, n_heads=12, d_k=32, d_v=32, ff_dim=1024,
     # attn_layer3 = TransformerEncoder(d_k, d_v, n_heads, ff_dim)
 
     '''Construct model'''
-    in_seq = Input(shape=(seq_len, 8))
+    in_seq = Input(shape=(seq_len, seq_dim))
     x = time_embedding(in_seq)
     x = Concatenate(axis=-1)([in_seq, x])
     for i in range(n_attention):
